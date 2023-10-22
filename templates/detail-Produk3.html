@@ -1,0 +1,178 @@
+<head>
+  <title>Detail | Daru Lab</title>
+  {% include "temp/Main-css.html" %}
+</head>
+<!-- akhir css  -->
+
+<style>
+  div.ex1 {
+    width: 1300px;
+    height: 500px;
+    overflow: auto;
+  }
+</style>
+
+<body class="pop">
+  <!-- bagian nav -->
+  <nav class="z-2 sticky-top navbar navbar-expand-lg navbar-dark">
+    {%include "temp/Temp-nav.html" %}
+  </nav>
+  <!-- akhir nav -->
+
+  <div class="">
+    <div class="row">
+      <div class="col-md-7 mb-4">
+        <img
+          class="img-fluid"
+          width="100%"
+          height=""
+          src="../static/img/image product/Minimal.png"
+          alt=""
+        />
+      </div>
+      <div class="col-md-5 mb-4 px-5 mt-5">
+        <h1>
+          Pil Pembersih <br />
+          Kloset duduk
+        </h1>
+        <span class="mt-4"
+          ><span class="text-secondary fw-medium">Made by </span
+          ><b>Daru Lab</b></span
+        >
+        <h2 class="text-war mt-4 mb-3">★ {{ "%.1f"|format(average_rating) }}</h2>
+        <hr />
+        <p class="mb-5 mt-5">
+          Secara simpel dan anti ribet tidak diperlukan penggosokan permukaan
+          bagian dalam kloset duduk menggunakan tangan yang terkadang sedikit
+          menjijikkan, cukup dengan memasukkan pil. Taraaaa! bagian dalam kloset
+          duduk akan selalu bersih dan terhindar dari kuman.
+        </p>
+
+        <button
+          class="btn btn-dark w-100 rounded-pill add-to-cart"
+          data-title="Pil Pembersih Kloset Duduk"
+          data-price="58062"
+          data-image="../static/img/image product/test2.png"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+    <div class="container-md">
+      <div class="row">
+        <div class="col-md-6 mb-4 mt-5">
+          <h3 data-aos="zoom-in-up" class="mb-3">Cara Pemakaian</h3>
+
+          <!-- <ol>
+            <li><b>Pastikan</b> mesin cuci dalam keadaan kosong</li>
+            <li>
+              Khusus mesin cuci top loading, <b>isi </b> tabung mesin cuci
+              dengan air dahulu
+            </li>
+            <li>
+              <b>Ambil</b> 1 atau 2 buah pil (Kapasitas tabung >7 kg = 2 pil)
+            </li>
+            <li>
+              <b>Letakkan</b> pil ke dalam tabung mesin cuci (Jangan masukkan ke
+              dispenser)
+            </li>
+            <li><b>Jalankan</b> mode pencucian dengan waktu tercepat</li>
+            <li>
+              <b>Tunggu</b> siklus mesin cuci berhenti dan mesin cuci dapat
+              digunakan seperti biasa (Bersihkan mesin cuci setiap 2 bulan)
+            </li>
+          </ol> -->
+          <ol class="list-group list-group-flush" data-aos="zoom-in-up">
+            <li class="list-group-item">
+              <b>Pastikan</b> kloset Anda kloset duduk dan memiliki tabung
+              penyimpanan air di belakang kloset
+            </li>
+            <li class="list-group-item">
+              <b>Ambil</b> dan <b>masukkan</b> 1 buah pil ke dalam tabung
+            </li>
+            <li class="list-group-item">
+              <b>Setelah itu</b>Anda dapat menekan tombol siram / flush (1 pil
+              akan bertahan selama ± 10 hari)
+            </li>
+          </ol>
+        </div>
+        <div class="col-6 d-flex justify-content-end mb-4 mx-auto">
+          <img
+            class="img-fluid rounded myimg-md-none"
+            width="440px"
+            src="../static/img/image product/toilet.jpg"
+            alt=""
+            data-aos="zoom-in-up"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- bagian komentar -->
+    <div class="container-md" style="margin-bottom: 100px">
+      <div class="row my-5 md-comment">
+        <div class="col-9"></div>
+        <button
+          data-aos="zoom-in-up"
+          class="col-3 btn btn-outline-dark fw-bold"
+          data-bs-toggle="modal"
+          data-bs-target="#commentmodal"
+        >
+          Tulis Ulasan
+        </button>
+      </div>
+      <span
+        data-aos="zoom-in-up"
+        style="box-sizing: border-box"
+        class="fs-5 fw-bold bg-dark text-light text-center align-item-center p-3 rounded"
+        >{{ "%.1f"|format(average_rating) }}
+        <span class="text-war mb-3 fw-bold fs-5 text-light"> ★</span></span
+      >
+      <!-- isi komen -->
+      {% for def in data %} {% set name = def.netizen %} {% set rate =
+      def.rating %} {% set head = def.head %} {% set isi = def.isi %} {% set
+      date = def.date %}
+      <div class="row my-5 comment-list" data-aos="zoom-in-up">
+        <div class="col-md-3 my-auto">
+          <p class="fw-bold fs-4">{{ name }}</p>
+          <hr />
+          <span class="text-secondary">{{ date }}</span>
+        </div>
+        <div class="col-md-9">
+          <p class="text-war mb-3 fw-bold fs-5">
+            {% if rate == 5 %} ★★★★★ {% elif rate == 4 %} ★★★★ {% elif rate == 3
+            %} ★★★ {% elif rate == 2 %} ★★ {% elif rate == 1 %} ★ {% endif %}
+          </p>
+          <p class="fw-light fs-4">{{ head }}</p>
+          <span class="fs-16px">{{ isi }}</span>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- <div class="row my-5 comment-list" data-aos="zoom-in-up">
+        <div class="col-md-3 my-auto">
+          <p class="fw-bold fs-4">Siti</p>
+          <hr />
+          <span class="text-secondary">6 Bulan yang lalu</span>
+        </div>
+        <div class="col-md-9">
+          <p class="text-war mb-3 fw-bold fs-5">★★★★★</p>
+          <p class="fw-light fs-4">Simple , bersih dan mudah digunakan.</p>
+          <span class="fs-16px"
+            >setelah saya membeli produk ini, toilet saya jadi lebih bersih</span
+          >
+        </div>
+        akhir isi komen -->
+      <div class="com-foot text-center">
+        <hr class="mt-5" />
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- cart -->
+  {%include "temp/cart.html"%}
+  <!-- footer -->
+  <footer class="z-2">{% include "temp/Temp-footer.html"%}</footer>
+  {%include "temp/Main-js.html"%}
+</body>

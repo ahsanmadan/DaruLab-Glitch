@@ -1,0 +1,69 @@
+<head>
+  <title>Dampak | Daru Lab</title>
+  {% include "temp/Main-css.html" %}
+</head>
+
+<body class="pop">
+  <!-- bagian nav -->
+  <nav class="z-2 sticky-top navbar navbar-expand-lg navbar-dark">{%include "temp/Temp-nav.html" %}</nav>
+
+  <!-- bagian penjelasan -->
+  <div class="container my-4">
+    <div class="row mt-5">
+      <div class="col-md-6 mb-4">
+        <h2 class="mt-5 col-md-10 dampak">Dampak dari Perusahaan</h2>
+        <div class="flex-col">
+          <p>
+            Transparansi dan keberlanjutan merupakan inti dari semua yang kami
+            lakukan di Daru Lab. Kami percaya bahwa setiap orang berhak
+            mengetahui apa yang ada di dalam produk yang mereka gunakan setiap
+            hari dan bagaimana produk tersebut memengaruhi planet ini. Kami
+            membagikan laporan ini kepada Anda untuk menunjukkan bagaimana kami
+            memberikan dampak positif sebagai perusahaan, dan mengapa hal ini
+            penting bagi Anda.
+          </p>
+        </div>
+      </div>
+      <div id="carouselExampleDark" data-bs-ride="carousel"
+      class="col-md-6 justify-content-center carousel carousel-dark slide">
+      
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            
+              <img src="../static/img/sayur.jpg" class="img-fluid rounded-start" alt="...">
+            
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            
+              <img src="../static/img/daur ulang.jpg" class="img-fluid rounded-start" alt="...">
+            
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            
+              <img src="../static/img/ramah-lingkungan.jpg" class="img-fluid rounded-start" alt="...">
+            
+          </div>
+        </div>
+
+
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    </div>
+  </div>
+  <!-- akhir penjelasan -->
+
+  <!-- footer -->
+  <!-- javascript -->
+
+ <!-- cart -->
+ {%include "temp/cart.html"%}
+ <!-- footer -->
+ <footer class="z-2">{% include "temp/Temp-footer.html"%}</footer>
+ {%include "temp/Main-js.html"%}
+</body>

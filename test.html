@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perbedaan Waktu</title>
+</head>
+<body>
+    <div id="waktu-sekarang">Waktu sekarang: Loading...</div>
+    <div id="perbedaan-waktu">Perbedaan waktu: Loading...</div>
+
+    <script>
+        function hitungPerbedaanWaktu(inputDate) {
+            const currentTime = new Date();
+            const inputTime = new Date(inputDate);
+            const perbedaan = currentTime - inputTime;
+
+            const detik = Math.floor(perbedaan / 1000);
+            const menit = Math.floor(detik / 60);
+            const jam = Math.floor(menit / 60);
+            const hari = Math.floor(jam / 24);
+            const bulan = Math.floor(hari / 30.44); // Hitung bulan secara akurat
+            const tahun = Math.floor(bulan / 12); // Hitung tahun
+
+            if (tahun > 1) {
+                return `${tahun} tahun yang lalu`;
+            } else if (bulan > 1) {
+                return `${bulan} bulan yang lalu`;
+            } else if (hari > 1) {
+                return `${hari} hari yang lalu`;
+            } else if (jam > 1) {
+                return `${jam} jam yang lalu`;
+            } else if (menit > 1) {
+                return `${menit} menit yang lalu`;
+            } else if (detik > 1) {
+                return `${detik} detik yang lalu`;
+            } else {
+                return "Baru saja";
+            }
+        }
+
+        function perbaruiTampilan() {
+            const inputDate = new Date("2022-03-20T10:30:00");
+            const perbedaanWaktu = hitungPerbedaanWaktu(inputDate);
+
+            document.getElementById("waktu-sekarang").textContent = "Waktu sekarang: " + new Date().toLocaleString();
+            document.getElementById("perbedaan-waktu").textContent = "Perbedaan waktu: " + perbedaanWaktu;
+        }
+
+        perbaruiTampilan(); // Pertama kali memperbarui tampilan
+
+        setInterval(perbaruiTampilan, 1000); // Memperbarui tampilan setiap detik
+    </script>
+</body>
+</html>

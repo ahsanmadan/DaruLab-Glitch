@@ -1,0 +1,267 @@
+<head>
+  <title>Detail | Daru Lab</title>
+  {% include "temp/Main-css.html" %}
+</head>
+<!-- akhir css  -->
+
+<style>
+  div.ex1 {
+    width: 1300px;
+    height: 500px;
+    overflow: auto;
+  }
+</style>
+<script>
+  let id = "{{ post.id }}";
+  let folder = "{{ post.folder }}";
+  $(document).ready(function () {
+    produk_detail(folder);
+  });
+</script>
+<body class="pop">
+  <!-- bagian nav -->
+  <nav class="z-2 sticky-top navbar navbar-expand-lg navbar-dark">
+    {%include "temp/Temp-nav.html" %}
+  </nav>
+  <!-- akhir nav -->
+  <div class="">
+    <div class="row">
+      <div class="col-md-7 mb-4">
+        {% if detail %} {% for item in detail %} {% if item.pic1 %}
+        <img
+          class="img-fluid bg-secondary"
+          width="100%"
+          height=""
+          src="../static/{{ item.pic1 }}"
+          alt="Image"
+        />
+        {% else %}
+        <img
+          class="img-fluid bg-secondary"
+          width="100%"
+          height=""
+          src="../static/img/none.png"
+          alt="No Image"
+        />
+        {% endif %} {% endfor %} {% endif %}
+      </div>
+
+      <div class="col-md-5 mb-4 px-5 mt-3">
+        {% if username%}
+        <div class="row mb-3">
+          <div class="col-md-12 text-end">
+            <button
+              type="button"
+              class="btn btn-dark fw-bolder"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              <i class="fa-solid fa-plus me-2" style="color: white"></i>Add
+              Detail Produk
+            </button>
+          </div>
+        </div>
+        {%endif%}
+        <h1>
+          {% if detail %} {% for item in detail %} {% if item.title %}
+          {{item.title}} {% else %} None {% endif %} {% endfor %} {% endif %}
+        </h1>
+        <span class="mt-4"
+          ><span class="text-secondary fw-medium">Made by </span
+          ><b>Daru Lab</b></span
+        >
+        <h2 class="text-war mt-4 mb-3">★ {{ "%.1f"|format(average_rating) }}</h2>
+        <hr />
+        <p class="mb-5 mt-5">
+          {% if detail %} {% for item in detail %} {% if item.desc %}
+          {{item.desc}} {% else %} None {% endif %} {% endfor %} {% endif %}
+        </p>
+        {% for item in detail %} {% for datas in data%}
+        <button
+          class="btn btn-dark w-100 rounded-pill add-to-cart"
+          data-title="{{item.title}}"
+          data-price="{{datas.price}}"
+          data-image="../static/{{item.pic1}}"
+        >
+          Add to Cart</button
+        >{% endfor %} {% endfor %}
+      </div>
+    </div>
+    <div class="container-md">
+      <div class="row">
+        <div class="col-md-6 mb-4 mt-5">
+          <h3 data-aos="zoom-in-up" class="mb-3">Cara Pemakaian</h3>
+          <ol class="list-group list-group-flush" data-aos="zoom-in-up">
+            {% if detail %} {% for item in detail %} {% if item.penggunaan %} {%
+            for cara in item.penggunaan.daftarCaraPemakaian%}
+            <li class="list-group-item">{{ cara }}</li>
+            {%endfor%} {% else %} None {% endif %} {% endfor %} {% endif %}
+          </ol>
+        </div>
+        <div class="col-6 d-flex justify-content-end mb-4 mx-auto">
+          {% if detail %} {% for item in detail %} {% if item.pic2 %}
+          <img
+            class="img-fluid rounded myimg-md-none bg-secondary"
+            width="440px"
+            src="../static/{{item.pic2}}"
+            alt="Gambar tidak ada"
+            data-aos="zoom-in-up"
+          />
+          {% else %}
+          <img
+            class="img-fluid rounded myimg-md-none bg-secondary"
+            width="440px"
+            src="../static/img/none.png"
+            alt="Gambar tidak ada"
+            data-aos="zoom-in-up"
+          />
+          {% endif %} {% endfor %} {% endif %}
+        </div>
+      </div>
+    </div>
+    <!-- bagian komentar -->
+    <div class="container-md" style="margin-bottom: 100px">
+      <div class="row my-5 md-comment">
+        <div class="col-9"></div>
+        <button
+          data-aos="zoom-in-up"
+          class="col-3 btn btn-outline-dark fw-bold"
+          data-bs-toggle="modal"
+          data-bs-target="#commentmodal"
+        >
+          Tulis Ulasan
+        </button>
+      </div>
+      <span
+        data-aos="zoom-in-up"
+        style="box-sizing: border-box"
+        class="fs-5 fw-bold bg-dark text-light text-center align-item-center p-3 rounded"
+        >{{ "%.1f"|format(average_rating) }}
+        <span class="text-war mb-3 fw-bold fs-5 text-light"> ★</span></span
+      >
+      <!-- isi komen -->
+      <!-- komen akan muncul berdasarkan id -->
+      {% for def in com %} {% set name = def.netizen %} {% set rate = def.rating
+      %} {% set head = def.head %} {% set isi = def.isi %} {% set date =
+      def.date %}
+      <div class="row my-5 comment-list" data-aos="zoom-in-up">
+        <div class="col-md-3 my-auto">
+          <p class="fw-bold fs-4">{{name}}</p>
+          <hr />
+          <span class="text-secondary">{{date}}</span>
+        </div>
+        <div class="col-md-9">
+          <p class="text-war mb-3 fw-bold fs-5">
+            {% if rate == 5 %} ★★★★★ {% elif rate == 4 %} ★★★★ {% elif rate == 3
+            %} ★★★ {% elif rate == 2 %} ★★ {% elif rate == 1 %} ★ {% endif %}
+          </p>
+          <p class="fw-light fs-4">{{head}}</p>
+          <span class="fs-16px">{{isi}}</span>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- akhir isi komen -->
+      <!-- tombol untuk melihatkan lebih banyak komen -->
+      <div class="com-foot text-center">
+        <hr class="mt-5" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal add -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Add detail Produk
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Untuk gambar atas</label>
+            <input class="form-control" type="file" id="detail-pic1-input" />
+            <div class="form-text" id="basic-addon4">
+              *Pastikan tiap sisi gambar sama atau berbentuk persegi
+            </div>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="detail-judul-input"
+              placeholder="Judul Produk"
+            />
+            <label for="floatingInput">Judul Produk</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea
+              class="form-control"
+              placeholder="Deskripsi Produk"
+              id="detail-desc-input"
+              style="height: 100px"
+            ></textarea>
+            <label for="floatingTextarea2">Deskripsi Produk</label>
+          </div>
+          <div class="mb-3">
+            <ul id="caraPemakaian">
+              <!-- Daftar cara pemakaian akan muncul di sini -->
+            </ul>
+            <textarea
+              class="form-control"
+              placeholder="Cara penggunaan produk"
+              id="inputCaraPemakaian"
+              style="height: 100px"
+            ></textarea>
+            <button class="btn btn-dark mt-3" onclick="tambahCaraPemakaian()">
+              Tambah Cara Penggunaan
+            </button>
+          </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label"
+              >Untuk gambar cara penggunaan produk</label
+            >
+            <input class="form-control" type="file" id="detail-pic2-input" />
+            <div class="form-text" id="basic-addon4">
+              *Pastikan tiap sisi gambar sama atau berbentuk persegi
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            onclick="tambahDetailProduk()"
+            type="button"
+            class="btn btn-primary"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cart -->
+  {%include "temp/cart.html"%}
+  <!-- footer -->
+  <footer class="z-2">{% include "temp/Temp-footer.html"%}</footer>
+  {%include "temp/Main-js.html"%}
+</body>

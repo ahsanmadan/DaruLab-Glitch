@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dashboard | Daru Lab</title>
+    {%include "temp/Admin-css.html"%}
+  </head>
+
+  <body>
+    <div class="layer"></div>
+    <!-- ! Body -->
+    <a class="skip-link sr-only">Skip to content</a>
+    <div class="page-flex">
+      <!-- ! Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-start">
+          <div class="sidebar-head">
+            <a href="" class="logo-wrapper" title="Home">
+              <span class="sr-only">Home</span>
+              <span class="icon logo" aria-hidden="true"></span>
+              <div class="logo-text">
+                <span class="logo-title">Daru</span>
+                <span class="logo-subtitle">Dashboard</span>
+              </div>
+            </a>
+            <button
+              class="sidebar-toggle transparent-btn"
+              title="Menu"
+              type="button"
+            >
+              <span class="sr-only">Toggle menu</span>
+              <span class="icon menu-toggle" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="sidebar-body">
+            <ul class="sidebar-body-menu">
+              <li>
+                <a class="" href="/admin"
+                  ><span class="icon home" aria-hidden="true"></span
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a class="" href="/admin/product">
+                  <img
+                    class="icon"
+                    src="../static/img/svg/package.png"
+                    alt=""
+                  />Product</a
+                >
+              </li>
+              <li>
+                <a class="active" href="/admin/comment">
+                  <span class="icon message" aria-hidden="true"></span>
+                  Comments
+                </a>
+              </li>
+            </ul>
+            <span class="system-menu__title">system</span>
+            <ul class="sidebar-body-menu">
+              <li>
+                <a href="/admin/user">
+                  <span class="icon user-3" aria-hidden="true"></span>Users
+                </a>
+              </li>
+              <li>
+                <a href="/">
+                  <span class="icon paper" aria-hidden="true"></span>Go to Main
+                  Page
+                </a>
+              </li>
+              <li>
+                <a class="show-cat-btn" onclick="sign_out()" href="">
+                  <span
+                    class="icon danger"
+                    data-feather="log-out"
+                    aria-hidden="true"
+                  ></span
+                  >Logout
+                </a>
+                <ul class="cat-sub-menu"></ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <div class="main-wrapper">
+        <!-- ! Main nav -->
+        <nav class="main-nav--bg">
+          <div class="container main-nav">
+            <div class="main-nav-start"></div>
+            <div class="main-nav-end">
+              <button
+                class="sidebar-toggle transparent-btn"
+                title="Menu"
+                type="button"
+              >
+                <span class="sr-only">Toggle menu</span>
+                <span class="icon menu-toggle--gray" aria-hidden="true"></span>
+              </button>
+              <button
+                class="theme-switcher gray-circle-btn"
+                type="button"
+                title="Switch theme"
+              >
+                <span class="sr-only">Switch theme</span>
+                <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
+                <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </nav>
+        <!-- ! Main -->
+        <main class="main users chart-page" id="skip-target">
+          <div class="container">
+            <h2 class="main-title">Comment</h2>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="users-table table-wrapper">
+                  <table class="posts-table">
+                    <thead>
+                      <!-- judul tabel -->
+                      <tr class="users-table-info">
+                        <th>
+                          <label class="users-table__checkbox ms-20">
+                            <input type="checkbox" class="check-all" />Nama
+                            Pengulas
+                          </label>
+                        </th>
+                        <th>Id produk</th>
+                        <th>Rating</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- isi -->
+                      {% for def in data %} {% set name = def.netizen %} {% set
+                      rate = def.rating %} {% set head = def.head %} {% set isi
+                      = def.isi %} {% set date = def.date %} {% set id = def.id
+                      %}
+                      <tr>
+                        <td>
+                          <label class="users-table__checkbox">
+                            <input type="checkbox" class="check" />
+                            {{name}}
+                          </label>
+                        </td>
+                        <td>{{id}}</td>
+                        <td>
+                          {% if rate == 5 %} ★★★★★ {% elif rate == 4 %} ★★★★ {%
+                          elif rate == 3 %} ★★★ {% elif rate == 2 %} ★★ {% elif
+                          rate == 1 %} ★ {% endif %}
+                        </td>
+                        <td>{{date}}</td>
+                        <td>
+                          <span class="p-relative">
+                            <button
+                              class="dropdown-btn transparent-btn"
+                              type="button"
+                              title="More info"
+                            >
+                              <div class="sr-only">More info</div>
+                              <i
+                                data-feather="more-horizontal"
+                                aria-hidden="true"
+                              ></i>
+                            </button>
+                            <ul class="users-item-dropdown dropdown">
+                              <li><a href="/deleteComment?id={{id}}">Delete</a></li>
+                            </ul>
+                          </span>
+                        </td>
+                      </tr>
+                      {%endfor%}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <!-- ! Footer -->
+        <footer class="footer">
+          <div class="container footer--flex">
+            <div class="footer-start">
+              <p>Copyright ©2023 – Daru Lab. – All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    {%include "temp/Admin-js.html"%}
+  </body>
+</html>

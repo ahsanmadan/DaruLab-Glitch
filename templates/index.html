@@ -1,0 +1,154 @@
+<head>
+  <title>Daru Lab</title>
+  <!-- Metadata Gambar untuk Media Sosial (Open Graph Protocol) -->
+  <meta property="og:title" content="Daru Laboratory" />
+  <meta
+    property="og:description"
+    content="Website ini akan menampilkan profil serta produk produk yang dijual Oleh Daru Laboratory"
+  />
+  <meta property="og:image" content="{{ url_for('static', filename='img/meta.png') }}" />
+  <meta property="og:type" content="website" />
+  {% include "temp/Home-css.html" %}
+</head>
+
+<body class="pop">
+  {% if error_message %}
+  <script>
+    // Menampilkan pesan kesalahan dengan alert JavaScript
+    alert("{{ error_message }}");
+  </script>
+  {% endif %}
+  <!-- bagian nav -->
+  <nav class="z-2 fixed-top navbar navbar-expand-lg navbar-dark">
+    {%include "temp/Temp-nav.html" %}
+  </nav>
+  <!-- akhir nav -->
+  <!-- banner atas -->
+  <div
+    class="ban-image w-100 vh-100 d-flex justify-content-start align-items-center"
+  >
+    <div class="content container text-start">
+      <h1 class="text-white mt-5 col-md-6 judul gara">
+        From Stains to Sparkle, We've Got the Magic Formula!
+      </h1>
+      <a
+        href="#formula"
+        class="btn btn-outline-light mt-4 fs-4 rounded-pill py-2 px-4"
+        >See Formula's</a
+      >
+    </div>
+  </div>
+  <!-- akhir banner atas -->
+
+  <!-- display produk -->
+  <div class="container mt-5 text-center mb-5 z-0" id="formula">
+    <h3 class="mb-5" data-aos="zoom-in-up">Produk Unggulan</h3>
+    <div class="row mb-3">
+      <div class="col-md-2"></div>
+      <div class="col-md-2 mb-3">
+        <img
+          class="img-fluid mb-3"
+          src="static/img/image product/1.png"
+          alt=""
+          data-aos="zoom-in-up"
+        />
+        <p>Pil pembersih Mesin Cuci</p>
+        <a
+          href="/produk1"
+          class="btn btn-outline-daru shadow rounded-pill py-2 px-4"
+        >
+          Beli Sekarang
+        </a>
+      </div>
+      <div class="col-md-2 mb-3">
+        <img
+          class="img-fluid mb-3"
+          src="static/img/image product/2.png"
+          alt=""
+          data-aos="zoom-in-up"
+        />
+        <p>Pil pembersih Kaca Daru</p>
+        <a
+          href="/produk2"
+          class="btn btn-outline-daru shadow rounded-pill py-2 px-4"
+        >
+          Beli Sekarang
+        </a>
+      </div>
+      <div class="col-md-2 mb-3">
+        <img
+          class="img-fluid mb-3"
+          src="static/img/image product/3.png"
+          alt=""
+          data-aos="zoom-in-up"
+        />
+        <p>Pil pembersih Kloset Duduk</p>
+        <a
+          href="/produk3"
+          class="btn btn-outline-daru shadow rounded-pill py-2 px-4"
+        >
+          Beli Sekarang
+        </a>
+      </div>
+      <div class="col-md-2 mb-3">
+        <img
+          class="img-fluid mb-3"
+          src="static/img/image product/4.png"
+          alt=""
+          data-aos="zoom-in-up"
+        />
+        <p>Pil pembersih Wiper Mobil</p>
+        <a
+          href="/produk4"
+          class="btn btn-outline-daru shadow rounded-pill py-2 px-4"
+        >
+          Beli Sekarang
+        </a>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="d-grid gap-2">
+          <a href="/produk" class="btn btn-daru shadow rounded-pill">
+            Lihat Semua
+          </a>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  <!-- akhir display produk -->
+
+  <!-- banner bawah -->
+  <div
+    class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center my-5"
+  >
+    <div class="content container text-center">
+      <h2 class="text-white tulis">Daru Lab</h2>
+      <h2 class="text-white tulis">is here to preserve the earth.</h2>
+      <p class="text-white mt-4 fs-4 tulis">
+        We make cleaning pills made from natural ingredients and minimise the
+        use of single-use materials - because small changes can make a big
+        impact.
+      </p>
+      <a href="/us">
+        <button
+          class="shadow btn btn-outline-light mt-4 fs-4 rounded-pill py-2 px-4"
+        >
+          About Us
+        </button></a
+      >
+    </div>
+  </div>
+  <!-- akhir banner bawah -->
+
+  <!-- bagian kontak -->
+
+  <!-- cart -->
+  {%include "temp/cart.html"%}
+  <!-- footer -->
+  <footer class="z-2">{% include "temp/Temp-footer.html"%}</footer>
+  {%include "temp/Home-js.html"%}
+</body>

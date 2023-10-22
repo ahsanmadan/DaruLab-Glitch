@@ -1,0 +1,68 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var currentPath = window.location.pathname;
+
+    if (currentPath === "/" || currentPath === "") {
+      var elem = document.getElementById("home-link");
+      if (elem) {
+        elem.classList.add("active");
+      }
+    } else if (currentPath === "/produk") {
+      var elem = document.getElementById("produk-link");
+      if (elem) {
+        elem.classList.add("active");
+      }
+    }
+  });
+</script>
+<div class="container navnav p-3">
+  <a class="navbar-brand none-sm" href="/">
+    <img
+      src="{{ url_for('static', filename='img/logo.png') }}"
+      alt=""
+      height="40px"
+    />
+  </a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mx-auto">
+      <!-- Tambahkan kelas mx-auto di sini -->
+      <li class="nav-item">
+        <a id="home-link" class="nav-link fw-medium" href="/">Beranda</a>
+      </li>
+      <li class="nav-item">
+        <a id="produk-link" class="nav-link fw-medium" href="/produk">Produk</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle fw-medium"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Tentang
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/us">Tentang kami</a></li>
+          <li><a class="dropdown-item" href="/dampak">Dampak kami</a></li>
+          <li><a class="dropdown-item" href="/faq">Pertanyaan Umum</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <a class="fs-5 mt-md-2" id="cart-icon"
+    ><i class="fa-solid fa-cart-shopping" style="color: #ffffff"></i
+  ></a>
+</div>

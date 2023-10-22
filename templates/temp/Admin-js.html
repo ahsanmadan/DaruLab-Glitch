@@ -1,0 +1,30 @@
+<!-- Chart library -->
+<script src="{{ url_for('static', filename='js/feather/chart.min.js') }}"></script>
+<!-- Icons library -->
+<script src="{{ url_for('static', filename='js/feather/feather.min.js') }}"></script>
+<!-- Custom scripts -->
+<script src="{{ url_for('static', filename='js/daru/admin.js') }}"></script>
+<script src="{{ url_for('static', filename='js/daru/daru.js') }}"></script>
+<script>
+  /*<![CDATA[*/
+  var greetElem = document.querySelector("#greetings");
+  var curHr = new Date().getHours();
+  var greetMes = [
+    "Wow! Masih Begadang ya",
+    "Selamat Pagi!",
+    "Selamat Siang!",
+    "Selamat Sore!",
+    "Selamat Malam!",
+    "Belum Tidur yaa",
+  ];
+  let greetText = "";
+  if (curHr < 4) greetText = greetMes[0];
+  else if (curHr < 11) greetText = greetMes[1];
+  else if (curHr < 15) greetText = greetMes[2];
+  else if (curHr < 18) greetText = greetMes[3];
+  else if (curHr < 22) greetText = greetMes[4];
+  else greetText = greetMes[5];
+  greetElem.setAttribute("data-content", greetText);
+  /*]]>*/
+  /*]]>*/
+</script>
